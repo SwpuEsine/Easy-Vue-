@@ -28,7 +28,14 @@ public class WelcomeController {
 
     @GetMapping(value = "/")
     public String Welcome(){
-        return "login";
+        //不加/ 是一个字符串
+        return "/login";
+    }
+
+    @GetMapping(value = "/login.html")
+    public String ll(){
+        //不加/ 是一个字符串
+        return "/ll";
     }
     /**
      * 针对该需求，Spring Security Web 提供了在http session中缓存请求的能力，也就是HttpSessionRequestCache。HttpSessionRequestCache所保存的请求必须封装成一个SavedRequest接口对象，实际上，HttpSessionRequestCache总是使用自己的SavedRequest缺省实现DefaultSavedRequest。
@@ -39,29 +46,8 @@ public class WelcomeController {
      版权声明：本文为博主原创文章，转载请附上博文链接！
      */
 
-    /**
-     * json请求
-     * @param request
-     * @param response
-     * @return
-     */
-    @GetMapping("/ll")
-    public JsonResult login(HttpServletRequest request, HttpServletResponse response) {
-        //如果是上一次的请求过来的 他会把上次的请求缓存起来  然后包装 然后日志记录
-        SavedRequest savedRequest = requestCache.getRequest(request, response);
-        if (savedRequest != null) {
-            String redirectUrl = savedRequest.getRedirectUrl();
-            //缓存的请求   如果有app 可以根据是app发来的请求
-            // 还是网页发来的进行区别处理 看看到底是重定向还是返回一个json数据
-            log.info("引发跳转的请求是：{}", redirectUrl);
-        }
-        return JsonResult.ok("请登录");
-    }
-
-
     @GetMapping("index")
     public String index(Authentication authentication, Model model) {
-        model.addAttribute("user",authentication.getPrincipal());
-        return "index";
+        return "/index";
     }
 }

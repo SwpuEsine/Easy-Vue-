@@ -51,7 +51,6 @@ public class SecurityController {
             String url=savedRequest.getRedirectUrl();
             log.info("引发跳转的url"+url);
             if (StringUtils.endsWithIgnoreCase(url,".html")){
-
                 redirectStrategy.sendRedirect(request,response,loginUrl);
             }
         }
