@@ -1,0 +1,8 @@
+RBAC的权限控制
+
+
+
+spring session
+
+    session超时提示
+    session并发控制       登录剔除     记录被谁踢出去

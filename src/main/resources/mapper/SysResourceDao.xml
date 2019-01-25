@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.puhui8.dao.SysResourceDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.puhui8.entity.SysResource">
+        <result column="resource_id" property="resourceId"/>
+        <result column="resource_name" property="resourceName"/>
+        <result column="order" property="order"/>
+        <result column="icon_name" property="iconName"/>
+        <result column="hidden" property="hidden"/>
+        <result column="path" property="path"/>
+        <result column="parent_id" property="parentId"/>
+        <result column="is_menu" property="isMenu"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `resource_id`,
+        `resource_name`,
+        `order`,
+        `icon_name`,
+        `hidden`,
+        `path`,
+        `parent_id`,
+        `is_menu`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.resourceId">
+        INSERT INTO sys_resource (
+            `resource_id`,
+            `resource_name`,
+            `order`,
+            `icon_name`,
+            `hidden`,
+            `path`,
+            `parent_id`,
+            `is_menu`
+        ) VALUES (
+            #{pojo.resourceId},
+            #{pojo.resourceName},
+            #{pojo.order},
+            #{pojo.iconName},
+            #{pojo.hidden},
+            #{pojo.path},
+            #{pojo.parentId},
+            #{pojo.isMenu}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.resourceId">
+        INSERT INTO sys_resource
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.resourceId!=null"> `resource_id`,</if>
+            <if test="pojo.resourceName!=null"> `resource_name`,</if>
+            <if test="pojo.order!=null"> `order`,</if>
+            <if test="pojo.iconName!=null"> `icon_name`,</if>
+            <if test="pojo.hidden!=null"> `hidden`,</if>
+            <if test="pojo.path!=null"> `path`,</if>
+            <if test="pojo.parentId!=null"> `parent_id`,</if>
+            <if test="pojo.isMenu!=null"> `is_menu`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.resourceId!=null">#{pojo.resourceId},</if>
+            <if test="pojo.resourceName!=null">#{pojo.resourceName},</if>
+            <if test="pojo.order!=null">#{pojo.order},</if>
+            <if test="pojo.iconName!=null">#{pojo.iconName},</if>
+            <if test="pojo.hidden!=null">#{pojo.hidden},</if>
+            <if test="pojo.path!=null">#{pojo.path},</if>
+            <if test="pojo.parentId!=null">#{pojo.parentId},</if>
+            <if test="pojo.isMenu!=null">#{pojo.isMenu},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO sys_resource (
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.resourceId},
+            #{pojo.resourceName},
+            #{pojo.order},
+            #{pojo.iconName},
+            #{pojo.hidden},
+            #{pojo.path},
+            #{pojo.parentId},
+            #{pojo.isMenu}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE sys_resource
+        <set>
+            <if test="pojo.resourceId != null"> `resource_id` = #{pojo.resourceId}, </if>
+            <if test="pojo.resourceName != null"> `resource_name` = #{pojo.resourceName}, </if>
+            <if test="pojo.order != null"> `order` = #{pojo.order}, </if>
+            <if test="pojo.iconName != null"> `icon_name` = #{pojo.iconName}, </if>
+            <if test="pojo.hidden != null"> `hidden` = #{pojo.hidden}, </if>
+            <if test="pojo.path != null"> `path` = #{pojo.path}, </if>
+            <if test="pojo.parentId != null"> `parent_id` = #{pojo.parentId}, </if>
+            <if test="pojo.isMenu != null"> `is_menu` = #{pojo.isMenu} </if>
+        </set>
+        WHERE resource_id = #{pojo.resourceId}
+    </update>
+</mapper>
+

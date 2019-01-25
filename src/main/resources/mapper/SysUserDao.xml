@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.puhui8.dao.SysUserDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.puhui8.entity.SysUser">
+        <result column="user_id" property="userId"/>
+        <result column="user_name" property="userName"/>
+        <result column="pass_word" property="passWord"/>
+        <result column="is_lock" property="isLock"/>
+        <result column="create_time" property="createTime"/>
+        <result column="update_time" property="updateTime"/>
+        <result column="phone" property="phone"/>
+        <result column="email" property="email"/>
+        <result column="is_expire" property="isExpire"/>
+        <result column="error_time" property="errorTime"/>
+        <result column="avator" property="avator"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `user_id`,
+        `user_name`,
+        `pass_word`,
+        `is_lock`,
+        `create_time`,
+        `update_time`,
+        `phone`,
+        `email`,
+        `is_expire`,
+`error_time`,
+`avator`
+</sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.userId">
+        INSERT INTO sys_user (
+            `user_id`,
+            `user_name`,
+            `pass_word`,
+            `is_lock`,
+            `create_time`,
+            `update_time`,
+            `phone`,
+            `email`,
+            `is_expire`,
+            `error_time`,
+            `avator`
+        ) VALUES (
+            #{pojo.userId},
+            #{pojo.userName},
+            #{pojo.passWord},
+            #{pojo.isLock},
+            #{pojo.createTime},
+            #{pojo.updateTime},
+            #{pojo.phone},
+            #{pojo.email},
+            #{pojo.isExpire},
+            #{pojo.errorTime},
+            #{pojo.avator}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.userId">
+        INSERT INTO sys_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.userId!=null"> `user_id`,</if>
+            <if test="pojo.userName!=null"> `user_name`,</if>
+            <if test="pojo.passWord!=null"> `pass_word`,</if>
+            <if test="pojo.isLock!=null"> `is_lock`,</if>
+            <if test="pojo.createTime!=null"> `create_time`,</if>
+            <if test="pojo.updateTime!=null"> `update_time`,</if>
+            <if test="pojo.phone!=null"> `phone`,</if>
+            <if test="pojo.email!=null"> `email`,</if>
+            <if test="pojo.isExpire!=null"> `is_expire`,</if>
+            <if test="pojo.errorTime!=null"> `error_time`,</if>
+            <if test="pojo.avator!=null"> `avator`</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.userId!=null"> #{pojo.userId},</if>
+            <if test="pojo.userName!=null"> #{pojo.userName},</if>
+            <if test="pojo.passWord!=null"> #{pojo.passWord},</if>
+            <if test="pojo.isLock!=null"> #{pojo.isLock},</if>
+            <if test="pojo.createTime!=null"> #{pojo.createTime},</if>
+            <if test="pojo.updateTime!=null"> #{pojo.updateTime},</if>
+            <if test="pojo.phone!=null"> #{pojo.phone},</if>
+            <if test="pojo.email!=null"> #{pojo.email},</if>
+            <if test="pojo.isExpire!=null"> #{pojo.isExpire},</if>
+            <if test="pojo.errorTime!=null"> #{pojo.errorTime},</if>
+            <if test="pojo.avator!=null"> #{pojo.avator}</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO sys_user(
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.userId},
+            #{pojo.userName},
+            #{pojo.passWord},
+            #{pojo.isLock},
+            #{pojo.createTime},
+            #{pojo.updateTime},
+            #{pojo.phone},
+            #{pojo.email},
+            #{pojo.isExpire},
+            #{pojo.errorTime},
+            #{pojo.avator}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE sys_user
+        <set>
+            <if test="pojo.userId != null"> `user_id` = #{pojo.userId},</if>
+            <if test="pojo.userName != null"> `user_name` = #{pojo.userName},</if>
+            <if test="pojo.passWord != null"> `pass_word` = #{pojo.passWord},</if>
+            <if test="pojo.isLock != null"> `is_lock` = #{pojo.isLock},</if>
+            <if test="pojo.createTime != null"> `create_time` = #{pojo.createTime},</if>
+            <if test="pojo.updateTime != null"> `update_time` = #{pojo.updateTime},</if>
+            <if test="pojo.phone != null"> `phone` = #{pojo.phone},</if>
+            <if test="pojo.email != null"> `email` = #{pojo.email},</if>
+            <if test="pojo.isExpire != null"> `is_expire` = #{pojo.isExpire},</if>
+            <if test="pojo.errorTime != null"> `error_time` = #{pojo.errorTime},</if>
+            <if test="pojo.avator != null"> `avator` = #{pojo.avator}</if>
+        </set>
+        WHERE user_id = #{pojo.userId}
+    </update>
+
+<!--auto generated by codehelper on 2019-01-22 09:10:33-->
+    <select id="findByUserName" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from sys_user
+        where `user_name`=#{userName}
+    </select>
+
+    <select id="findUserRoleNameWithDelimiter" resultType="string">
+        SELECT GROUP_CONCAT(ro.role_name) from  sys_user_role  r
+         left join sys_role ro  on r.role_id=ro.role_id
+          where r.user_id=#{userId}
+    </select>
+
+</mapper>
+

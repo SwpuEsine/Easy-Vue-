@@ -1,0 +1,18 @@
+spring Security作用
+            认证
+            授权
+            防护攻击
+
+            默认basic验证  对所有访问的请求都需要验证   认证后才会跳转到请求都网址上面去
+
+
+
+
+第一条的存储命令就是实际的session数据，这个数据在Redis是以HashSet的形式存储的，
+可以在里面存储各种数据。第三条存储命令就是辅助session过期的数据，它在expire时间会比实际数据久一点，
+用于区别一个session是超时还是不存在。第五条存储命令就是整体的session过期记录，它是一个集合。
+这个整体expirations集合的意义在于Redis的超时是不精确的，可能会出现一个session已经过期(辅助session数据也已经过期)了，
+但是它仍然存在于Redis中。这是因为Redis的数据超时清除任务是低优先级的。
+有了整体的session过期记录，就可以解决这种问题。当Redis真正清除数据时（会有事件通知），再把session从expirations集合中删除掉。
+
+
