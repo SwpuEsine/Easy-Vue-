@@ -6,3 +6,15 @@ spring session
 
     session超时提示
     session并发控制       登录剔除     记录被谁踢出去
+
+
+/ spring boot 会在404页面  500的时候 根据浏览器还是app返回不同的内容
+
+/error请求  spring boot 会根据product 判断是浏览器  还是html页面  然后来进行操作
+
+baseErrorController
+
+
+如果是html页面    那就会返回html页面     否则会返回json 这是默认的spring boot处理机制
+
+

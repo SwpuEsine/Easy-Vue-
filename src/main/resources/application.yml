@@ -3,6 +3,7 @@ spring:
     cache: false
     prefix: classpath:/templates/
     suffix: .html
+
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://localhost:3306/spring-enterprise?useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=round&useSSL=false
@@ -53,6 +54,8 @@ spring:
 security:
     login:
       page: /login.html
+
+
 server:
   servlet:
     session:

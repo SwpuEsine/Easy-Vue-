@@ -1,7 +1,7 @@
 /*
 package com.puhui8.dao;
 
-import com.puhui8.entity.SysUser;
+import SysUser;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
