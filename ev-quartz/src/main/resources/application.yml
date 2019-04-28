@@ -1,0 +1,31 @@
+spring:
+  quartz:
+      #相关属性配置
+      properties:
+        org:
+          quartz:
+            scheduler:
+              instanceName: clusteredScheduler
+              instanceId: AUTO
+            jobStore:
+              class: org.quartz.impl.jdbcjobstore.JobStoreTX
+              driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+              tablePrefix: QRTZ_
+              isClustered: true
+              clusterCheckinInterval: 20000
+              maxMisfiresToHandleAtATime: 1
+              useProperties: false
+            threadPool:
+              #线程池实现类
+              class: org.quartz.simpl.SimpleThreadPool
+              #执行最大并发线程数量
+              threadCount: 5
+              #线程优先级
+              threadPriority: 5
+              #配置是否启动自动加载数据库内的定时任务，默认true
+              threadsInheritContextClassLoaderOfInitializingThread: true
+      #数据库方式
+      job-store-type: jdbc
+      #初始化表结构
+      jdbc:
+          initialize-schema: never

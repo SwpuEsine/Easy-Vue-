@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ev.dao.QuartzJobDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ev.entity.QuartzJob">
+        <result column="job_id" property="jobId"/>
+        <result column="job_name" property="jobName"/>
+        <result column="job_group" property="jobGroup"/>
+        <result column="job_status" property="jobStatus"/>
+        <result column="is_concurrent" property="isConcurrent"/>
+        <result column="cron_expression" property="cronExpression"/>
+        <result column="description" property="description"/>
+        <result column="job_class" property="jobClass"/>
+        <result column="start_time" property="startTime"/>
+        <result column="previous_time" property="previousTime"/>
+        <result column="next_time" property="nextTime"/>
+        <result column="parameter" property="parameter"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `job_id`,
+        `job_name`,
+        `job_group`,
+        `job_status`,
+        `is_concurrent`,
+        `cron_expression`,
+        `description`,
+        `job_class`,
+        `start_time`,
+        `previous_time`,
+        `next_time`,
+        `parameter`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.jobId">
+        INSERT INTO quartz_job (
+            `job_id`,
+            `job_name`,
+            `job_group`,
+            `job_status`,
+            `is_concurrent`,
+            `cron_expression`,
+            `description`,
+            `job_class`,
+            `start_time`,
+            `previous_time`,
+            `next_time`,
+            `parameter`
+        ) VALUES (
+            #{pojo.jobId},
+            #{pojo.jobName},
+            #{pojo.jobGroup},
+            #{pojo.jobStatus},
+            #{pojo.isConcurrent},
+            #{pojo.cronExpression},
+            #{pojo.description},
+            #{pojo.jobClass},
+            #{pojo.startTime},
+            #{pojo.previousTime},
+            #{pojo.nextTime},
+            #{pojo.parameter}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.jobId">
+        INSERT INTO quartz_job
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.jobId!=null"> `job_id`,</if>
+            <if test="pojo.jobName!=null"> `job_name`,</if>
+            <if test="pojo.jobGroup!=null"> `job_group`,</if>
+            <if test="pojo.jobStatus!=null"> `job_status`,</if>
+            <if test="pojo.isConcurrent!=null"> `is_concurrent`,</if>
+            <if test="pojo.cronExpression!=null"> `cron_expression`,</if>
+            <if test="pojo.description!=null"> `description`,</if>
+            <if test="pojo.jobClass!=null"> `job_class`,</if>
+            <if test="pojo.startTime!=null"> `start_time`,</if>
+            <if test="pojo.previousTime!=null"> `previous_time`,</if>
+            <if test="pojo.nextTime!=null"> `next_time`,</if>
+            <if test="pojo.parameter!=null"> `parameter`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.jobId!=null">#{pojo.jobId},</if>
+            <if test="pojo.jobName!=null">#{pojo.jobName},</if>
+            <if test="pojo.jobGroup!=null">#{pojo.jobGroup},</if>
+            <if test="pojo.jobStatus!=null">#{pojo.jobStatus},</if>
+            <if test="pojo.isConcurrent!=null">#{pojo.isConcurrent},</if>
+            <if test="pojo.cronExpression!=null">#{pojo.cronExpression},</if>
+            <if test="pojo.description!=null">#{pojo.description},</if>
+            <if test="pojo.jobClass!=null">#{pojo.jobClass},</if>
+            <if test="pojo.startTime!=null">#{pojo.startTime},</if>
+            <if test="pojo.previousTime!=null">#{pojo.previousTime},</if>
+            <if test="pojo.nextTime!=null">#{pojo.nextTime},</if>
+            <if test="pojo.parameter!=null">#{pojo.parameter},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO quartz_job (
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.jobId},
+            #{pojo.jobName},
+            #{pojo.jobGroup},
+            #{pojo.jobStatus},
+            #{pojo.isConcurrent},
+            #{pojo.cronExpression},
+            #{pojo.description},
+            #{pojo.jobClass},
+            #{pojo.startTime},
+            #{pojo.previousTime},
+            #{pojo.nextTime},
+            #{pojo.parameter}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE quartz_job
+        <set>
+            <if test="pojo.jobId != null"> `job_id` = #{pojo.jobId}, </if>
+            <if test="pojo.jobName != null"> `job_name` = #{pojo.jobName}, </if>
+            <if test="pojo.jobGroup != null"> `job_group` = #{pojo.jobGroup}, </if>
+            <if test="pojo.jobStatus != null"> `job_status` = #{pojo.jobStatus}, </if>
+            <if test="pojo.isConcurrent != null"> `is_concurrent` = #{pojo.isConcurrent}, </if>
+            <if test="pojo.cronExpression != null"> `cron_expression` = #{pojo.cronExpression}, </if>
+            <if test="pojo.description != null"> `description` = #{pojo.description}, </if>
+            <if test="pojo.jobClass != null"> `job_class` = #{pojo.jobClass}, </if>
+            <if test="pojo.startTime != null"> `start_time` = #{pojo.startTime}, </if>
+            <if test="pojo.previousTime != null"> `previous_time` = #{pojo.previousTime}, </if>
+            <if test="pojo.nextTime != null"> `next_time` = #{pojo.nextTime}, </if>
+            <if test="pojo.parameter != null"> `parameter` = #{pojo.parameter} </if>
+        </set>
+        WHERE job_id = #{pojo.jobId}
+    </update>
+
+<!--auto generated by codehelper on 2019-03-11 16:42:21-->
+    <select id="findByJobStatusNot" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from quartz_job
+        where `job_status`
+        !=#{notJobStatus}
+    </select>
+
+<!--auto generated by codehelper on 2019-03-11 17:23:34-->
+    <select id="findByJobId" resultMap="AllColumnMap">
+        select
+        <include refid="all_column"/>
+        from quartz_job
+        where `job_id`=#{jobId}
+    </select>
+
+
+</mapper>
+

@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ev.dao.SysJobLogDao">
+    <!--auto generated Code-->
+    <resultMap id="AllColumnMap" type="com.ev.entity.SysJobLog">
+        <result column="log_id" property="logId"/>
+        <result column="job_name" property="jobName"/>
+        <result column="trig_name" property="trigName"/>
+        <result column="start_time" property="startTime"/>
+        <result column="end_time" property="endTime"/>
+        <result column="content" property="content"/>
+        <result column="run_time" property="runTime"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="all_column">
+        `log_id`,
+        `job_name`,
+        `trig_name`,
+        `start_time`,
+        `end_time`,
+        `content`,
+        `run_time`
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.logId">
+        INSERT INTO sys_job_log (
+            `log_id`,
+            `job_name`,
+            `trig_name`,
+            `start_time`,
+            `end_time`,
+            `content`,
+            `run_time`
+        ) VALUES (
+            #{pojo.logId},
+            #{pojo.jobName},
+            #{pojo.trigName},
+            #{pojo.startTime},
+            #{pojo.endTime},
+            #{pojo.content},
+            #{pojo.runTime}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.logId">
+        INSERT INTO sys_job_log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.logId!=null"> `log_id`,</if>
+            <if test="pojo.jobName!=null"> `job_name`,</if>
+            <if test="pojo.trigName!=null"> `trig_name`,</if>
+            <if test="pojo.startTime!=null"> `start_time`,</if>
+            <if test="pojo.endTime!=null"> `end_time`,</if>
+            <if test="pojo.content!=null"> `content`,</if>
+            <if test="pojo.runTime!=null"> `run_time`,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="pojo.logId!=null">#{pojo.logId},</if>
+            <if test="pojo.jobName!=null">#{pojo.jobName},</if>
+            <if test="pojo.trigName!=null">#{pojo.trigName},</if>
+            <if test="pojo.startTime!=null">#{pojo.startTime},</if>
+            <if test="pojo.endTime!=null">#{pojo.endTime},</if>
+            <if test="pojo.content!=null">#{pojo.content},</if>
+            <if test="pojo.runTime!=null">#{pojo.runTime},</if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO sys_job_log (
+        <include refid="all_column"/>
+        )VALUES
+        <foreach collection="pojos" item="pojo" index="index" separator=",">
+            (
+            #{pojo.logId},
+            #{pojo.jobName},
+            #{pojo.trigName},
+            #{pojo.startTime},
+            #{pojo.endTime},
+            #{pojo.content},
+            #{pojo.runTime}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE sys_job_log
+        <set>
+            <if test="pojo.logId != null"> `log_id` = #{pojo.logId}, </if>
+            <if test="pojo.jobName != null"> `job_name` = #{pojo.jobName}, </if>
+            <if test="pojo.trigName != null"> `trig_name` = #{pojo.trigName}, </if>
+            <if test="pojo.startTime != null"> `start_time` = #{pojo.startTime}, </if>
+            <if test="pojo.endTime != null"> `end_time` = #{pojo.endTime}, </if>
+            <if test="pojo.content != null"> `content` = #{pojo.content}, </if>
+            <if test="pojo.runTime != null"> `run_time` = #{pojo.runTime} </if>
+        </set>
+        WHERE log_id = #{pojo.logId}
+    </update>
+</mapper>
+

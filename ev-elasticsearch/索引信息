@@ -1,0 +1,47 @@
+PUT /syslog
+{
+    "settings": {
+        "number_of_replicas": 1
+    },
+    "mappings": {
+        "opr_log":{
+            "dynamic": false,
+            "properties": {
+                "userName" :{
+                    "type": "keyword"
+                },
+                "className":{
+                    "type": "string"
+                    , "index": "no"
+                },
+                "methodName":{
+                    "type": "keyword"
+                },
+                "parameters":{
+                    "type": "string"
+                    , "index": "no"
+                },
+                "url":{
+                    "type": "string"
+                    ,"index": "analyzed"
+                },
+                "createTime":{
+                    "type": "date"
+                },
+                "duration":{
+                    "type": "long"
+                },
+                "isException":{
+                    "type": "boolean"
+                },
+                "isProcess":{
+                    "type": "boolean"
+                },
+                "ipAddress":{
+                    "type": "string",
+                    "index": "no"
+                }
+            }
+        }
+    }
+}

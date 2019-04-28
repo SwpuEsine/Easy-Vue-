@@ -1,0 +1,24 @@
+spring:
+#  data:
+#        elasticsearch:
+#            cluster-name: esine-cluster #默认为elasticsearch
+#            cluster-nodes: 127.0.0.1:9300,127.0.0.1:9301 #配置es节点信息，逗号分隔，如果没有指定，则启动ClientNode（9200端口是http查询使用的。9300集群使用。这里使用9300.）
+#            properties:
+#                path:
+#                  logs: ./elasticsearch/log #elasticsearch日志存储目录
+#                  data: ./elasticsearch/data #elasticsearch数据存储目录
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+  application:
+    name: rabbitmq-server
+  profiles:
+    include: es
+
+rmqconfig:
+    log-queue:
+      name: opr_log
+server:
+  port: 8081
